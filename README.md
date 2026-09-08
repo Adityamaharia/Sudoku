@@ -2,6 +2,10 @@
 
 A mobile-first Sudoku web app built with HTML, CSS, and modern vanilla JavaScript. The architecture is designed to be reusable for future PWA and Capacitor-based Android/iOS app packaging.
 
+## Live Demo
+
+https://adityamaharia.github.io/Sudoku/
+
 ## Project Structure
 
 - `index.html` – application shell
