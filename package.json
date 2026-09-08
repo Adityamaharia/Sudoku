@@ -1,0 +1,31 @@
+{
+  "name": "sudoku-app",
+  "version": "1.0.0",
+  "description": "A production-quality mobile-first Sudoku web app with Capacitor architecture",
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "test": "node --test tests/*.test.js",
+    "build:web": "node scripts/build-web.mjs",
+    "cap:sync": "npm run build:web && npx cap sync"
+  },
+  "keywords": [
+    "sudoku",
+    "game",
+    "mobile-first",
+    "pwa",
+    "capacitor"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^8.5.1",
+    "@capacitor/core": "^8.5.1",
+    "@capacitor/ios": "^8.5.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.1"
+  }
+}
