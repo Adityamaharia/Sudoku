@@ -6,6 +6,12 @@ A mobile-first Sudoku web app built with HTML, CSS, and modern vanilla JavaScrip
 
 https://adityamaharia.github.io/Sudoku/
 
+## 🚧 Status
+
+> **In Development**
+>
+> This project is currently under active development. The core application is functional, but several features, improvements, and refinements are still being worked on. The live demo may change as development continues.
+
 ## Project Structure
 
 - `index.html` – application shell
