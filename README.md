@@ -13,17 +13,6 @@ A mobile-first Sudoku web app built with HTML, CSS, and modern vanilla JavaScrip
 - `js/storage.js` – local persistence abstraction
 - `assets/` – local app assets
 
-## Run locally
-
-```bash
-python -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000
-```
 
 ## PWA and Capacitor path
 
