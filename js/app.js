@@ -37,6 +37,7 @@ const state = {
   game: null,
   timerId: null,
   difficulty: "easy",
+  theme: "light",
 };
 
 const elements = {
@@ -50,6 +51,8 @@ const elements = {
   newGame: document.getElementById("btn-new-game"),
   home: document.getElementById("btn-home"),
   resumeGame: document.getElementById("btn-resume-game"),
+  settings: document.getElementById("btn-settings"),
+  settingsBack: document.getElementById("btn-settings-back"),
   newFromPause: document.getElementById("btn-new-from-pause"),
   homeFromPause: document.getElementById("btn-home-from-pause"),
   nextPuzzle: document.getElementById("btn-next-puzzle"),
@@ -57,7 +60,22 @@ const elements = {
   share: document.getElementById("btn-share"),
   erase: document.getElementById("btn-erase"),
   numberButtons: document.querySelectorAll(".btn-number"),
+  themeSelect: document.getElementById("theme-select"),
 };
+
+function applyTheme(theme) {
+  const normalizedTheme = theme === "classic" ? "light" : theme;
+  const validThemes = ["light", "dark"];
+  state.theme = validThemes.includes(normalizedTheme)
+    ? normalizedTheme
+    : "light";
+  document.documentElement.dataset.theme = state.theme;
+  elements.themeSelect.value = state.theme;
+}
+
+function persistSettings() {
+  saveSettings({ difficulty: state.difficulty, theme: state.theme });
+}
 
 function formatTime(totalSeconds) {
   const minutes = Math.floor(totalSeconds / 60)
@@ -82,9 +100,7 @@ function persistGame() {
       : null,
   });
 
-  saveSettings({
-    difficulty: state.difficulty,
-  });
+  persistSettings();
 }
 
 function updateStats() {
@@ -200,6 +216,11 @@ function showHome() {
   elements.resumeGame.hidden = !state.game;
   saveNavigation("home");
   showScreen("difficulty-screen");
+}
+
+function showSettings() {
+  saveNavigation("home");
+  showScreen("settings-screen");
 }
 
 function resumeSavedGame() {
@@ -347,10 +368,15 @@ function attachBoardEvents() {
 }
 
 function attachControlEvents() {
+  elements.themeSelect.addEventListener("change", (event) => {
+    applyTheme(event.target.value);
+    persistSettings();
+  });
+
   elements.difficultyButtons.forEach((button) => {
     button.addEventListener("click", () => {
       state.difficulty = button.dataset.difficulty;
-      saveSettings({ difficulty: state.difficulty });
+      persistSettings();
       createNewGame(state.difficulty);
     });
   });
@@ -418,6 +444,8 @@ function attachControlEvents() {
 
   elements.home.addEventListener("click", showHome);
   elements.resumeGame.addEventListener("click", resumeSavedGame);
+  elements.settings.addEventListener("click", showSettings);
+  elements.settingsBack.addEventListener("click", showHome);
 
   elements.newFromPause.addEventListener("click", () => {
     createNewGame(state.difficulty);
@@ -494,6 +522,7 @@ function init() {
   if (savedSettings && savedSettings.difficulty) {
     state.difficulty = savedSettings.difficulty;
   }
+  applyTheme(savedSettings?.theme || "classic");
 
   const savedGame = loadGame();
   if (savedGame) {

@@ -88,7 +88,32 @@
               <button id="btn-resume-game" class="btn btn-secondary" hidden>
                 Resume Game
               </button>
+              <button id="btn-settings" class="btn btn-secondary">
+                ⚙ Settings
+              </button>
             </div>
+          </div>
+        </div>
+
+        <div id="settings-screen" class="screen">
+          <div class="screen-content">
+            <h2>Settings</h2>
+            <p class="subtitle">Personalize your game</p>
+
+            <section class="settings-section" aria-labelledby="theme-title">
+              <h3 id="theme-title">Appearance</h3>
+              <label class="theme-picker">
+                <span>Theme</span>
+                <select id="theme-select" aria-label="Choose theme">
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                </select>
+              </label>
+            </section>
+
+            <button id="btn-settings-back" class="btn btn-secondary">
+              ← Back
+            </button>
           </div>
         </div>
 

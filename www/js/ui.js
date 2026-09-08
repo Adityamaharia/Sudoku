@@ -76,6 +76,9 @@ export function updateHints(value) {
 }
 
 export function showScreen(screenId) {
+  const app = document.getElementById("app");
+  if (app) app.dataset.screen = screenId;
+
   document.querySelectorAll(".screen").forEach((screen) => {
     screen.classList.toggle("active", screen.id === screenId);
   });
